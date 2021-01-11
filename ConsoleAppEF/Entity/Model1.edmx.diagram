@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="72d8757a3f0b4b61a4630cd1fd38c5d3" Name="Diagram1">
+        <EntityTypeShape EntityType="SI2_Model.Aluno" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Curso" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Curso_Dep" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Departamento" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Escola" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Inscricao" Width="1.5" PointX="9.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Matricula" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.NotaFinal" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Nota" Width="1.5" PointX="12" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Oferta" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Pessoa" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Professor" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Registo_Prof_Ano" Width="1.5" PointX="12.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Registo_Regente_Ano" Width="1.5" PointX="14.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.Seccao" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SI2_Model.UC" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="SI2_Model.FK__Aluno__nCont__2BB470E3" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Matricula__aluno__5D4BCC77" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__NotaFinal__aluno__6AA5C795" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Curso_Dep__curso__4850AF91" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Matricula__curso__5E3FF0B0" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__NotaFinal__curso__6C8E1007" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Oferta__curso__4C214075" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Curso_Dep__depar__475C8B58" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Departame__escol__4297D63B" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Seccao__departam__51DA19CB" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Pessoa__escola__27E3DFFF" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__UC__escola__335592AB" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Inscricao__matri__6304A5CD" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Inscricao__ofert__63F8CA06" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Notas__inscrito__66D536B1" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Oferta__uc__4D1564AE" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Professor__nCont__2F8501C7" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Registo_Pr__prof__381A47C8" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Registo_Re__prof__3CDEFCE5" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Registo_Prof__uc__390E6C01" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.FK__Registo_Rege__uc__3DD3211E" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.Coord_Seccao" ManuallyRouted="false" />
+        <AssociationConnector Association="SI2_Model.Prof_Seccao" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

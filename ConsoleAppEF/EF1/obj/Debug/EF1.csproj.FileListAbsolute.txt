@@ -1,0 +1,14 @@
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\bin\Debug\EF1.exe.config
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\bin\Debug\EF1.exe
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\bin\Debug\EF1.pdb
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\bin\Debug\EntityFramework.dll
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\bin\Debug\EntityFramework.xml
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\obj\Debug\EF1.csprojAssemblyReference.cache
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\obj\Debug\EF1.Properties.Resources.resources
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\obj\Debug\EF1.csproj.GenerateResource.cache
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\obj\Debug\EF1.csproj.CoreCompileInputs.cache
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\obj\Debug\EF1.csproj.CopyComplete
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\obj\Debug\EF1.exe
+C:\Users\Asus\source\repos\ConsoleAppEF\EF1\obj\Debug\EF1.pdb

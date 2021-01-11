@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kNhVt7W+QhnhFhZfeg0t3y8bgKsyZbTUhn3jOz10gEu/pLItbgYs4oHHkQa9zu3+kyZCEU52eYd93CW9iVO4yA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Asus\\source\\repos\\ConsoleAppEF\\EF\\EF.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}

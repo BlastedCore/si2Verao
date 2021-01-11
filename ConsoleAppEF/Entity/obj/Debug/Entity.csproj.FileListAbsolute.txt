@@ -1,0 +1,12 @@
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\obj\Debug\Entity.csprojAssemblyReference.cache
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\bin\Debug\Entity.exe.config
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\bin\Debug\Entity.exe
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\bin\Debug\Entity.pdb
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\bin\Debug\EntityFramework.dll
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\bin\Debug\EntityFramework.xml
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\obj\Debug\Entity.csproj.CopyComplete
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\obj\Debug\Entity.exe
+C:\Users\Asus\source\repos\ConsoleAppEF\Entity\obj\Debug\Entity.pdb

@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SI2_Fase2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Aluno">
+    <Key>
+      <PropertyRef Name="nAluno" />
+    </Key>
+    <Property Name="nAluno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nCont" Type="Int32" />
+    <Property Name="morada" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dtNsc" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Pessoa" Relationship="Self.FK__Aluno__nCont__2BB470E3" FromRole="Aluno" ToRole="Pessoa" />
+    <NavigationProperty Name="Matriculas" Relationship="Self.FK__Matricula__aluno__5D4BCC77" FromRole="Aluno" ToRole="Matricula" />
+    <NavigationProperty Name="NotaFinals" Relationship="Self.FK__NotaFinal__aluno__6AA5C795" FromRole="Aluno" ToRole="NotaFinal" />
+  </EntityType>
+  <EntityType Name="Curso">
+    <Key>
+      <PropertyRef Name="sigla" />
+    </Key>
+    <Property Name="sigla" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descricao" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Curso_Dep" Relationship="Self.FK__Curso_Dep__curso__4850AF91" FromRole="Curso" ToRole="Curso_Dep" />
+    <NavigationProperty Name="Matriculas" Relationship="Self.FK__Matricula__curso__5E3FF0B0" FromRole="Curso" ToRole="Matricula" />
+    <NavigationProperty Name="NotaFinals" Relationship="Self.FK__NotaFinal__curso__6C8E1007" FromRole="Curso" ToRole="NotaFinal" />
+    <NavigationProperty Name="Ofertas" Relationship="Self.FK__Oferta__curso__4C214075" FromRole="Curso" ToRole="Oferta" />
+  </EntityType>
+  <EntityType Name="Curso_Dep">
+    <Key>
+      <PropertyRef Name="curso" />
+    </Key>
+    <Property Name="departamento" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="curso" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Curso1" Relationship="Self.FK__Curso_Dep__curso__4850AF91" FromRole="Curso_Dep" ToRole="Curso" />
+    <NavigationProperty Name="Departamento1" Relationship="Self.FK__Curso_Dep__depar__475C8B58" FromRole="Curso_Dep" ToRole="Departamento" />
+  </EntityType>
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="sigla" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="escola" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="sigla" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descricao" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Curso_Dep" Relationship="Self.FK__Curso_Dep__depar__475C8B58" FromRole="Departamento" ToRole="Curso_Dep" />
+    <NavigationProperty Name="Escola1" Relationship="Self.FK__Departame__escol__4297D63B" FromRole="Departamento" ToRole="Escola" />
+    <NavigationProperty Name="Seccaos" Relationship="Self.FK__Seccao__departam__51DA19CB" FromRole="Departamento" ToRole="Seccao" />
+  </EntityType>
+  <EntityType Name="Escola">
+    <Key>
+      <PropertyRef Name="nome" />
+    </Key>
+    <Property Name="nome" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Departamentoes" Relationship="Self.FK__Departame__escol__4297D63B" FromRole="Escola" ToRole="Departamento" />
+    <NavigationProperty Name="Pessoas" Relationship="Self.FK__Pessoa__escola__27E3DFFF" FromRole="Escola" ToRole="Pessoa" />
+    <NavigationProperty Name="UCs" Relationship="Self.FK__UC__escola__335592AB" FromRole="Escola" ToRole="UC" />
+  </EntityType>
+  <EntityType Name="Inscricao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="matricula" Type="Int32" />
+    <Property Name="oferta" Type="Int32" />
+    <NavigationProperty Name="Matricula1" Relationship="Self.FK__Inscricao__matri__6304A5CD" FromRole="Inscricao" ToRole="Matricula" />
+    <NavigationProperty Name="Oferta1" Relationship="Self.FK__Inscricao__ofert__63F8CA06" FromRole="Inscricao" ToRole="Oferta" />
+    <NavigationProperty Name="Notas" Relationship="Self.FK__Notas__inscrito__66D536B1" FromRole="Inscricao" ToRole="Notas" />
+  </EntityType>
+  <EntityType Name="Matricula">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aluno" Type="Int32" />
+    <Property Name="curso" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="ano" Type="Int32" />
+    <NavigationProperty Name="Aluno1" Relationship="Self.FK__Matricula__aluno__5D4BCC77" FromRole="Matricula" ToRole="Aluno" />
+    <NavigationProperty Name="Curso1" Relationship="Self.FK__Matricula__curso__5E3FF0B0" FromRole="Matricula" ToRole="Curso" />
+    <NavigationProperty Name="Inscricaos" Relationship="Self.FK__Inscricao__matri__6304A5CD" FromRole="Matricula" ToRole="Inscricao" />
+  </EntityType>
+  <EntityType Name="NotaFinal">
+    <Key>
+      <PropertyRef Name="aluno" />
+      <PropertyRef Name="curso" />
+    </Key>
+    <Property Name="aluno" Type="Int32" Nullable="false" />
+    <Property Name="ano" Type="Int32" />
+    <Property Name="curso" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="notaMed" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Aluno1" Relationship="Self.FK__NotaFinal__aluno__6AA5C795" FromRole="NotaFinal" ToRole="Aluno" />
+    <NavigationProperty Name="Curso1" Relationship="Self.FK__NotaFinal__curso__6C8E1007" FromRole="NotaFinal" ToRole="Curso" />
+  </EntityType>
+  <EntityType Name="Nota">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="inscrito" Type="Int32" />
+    <Property Name="nota1" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Inscricao" Relationship="Self.FK__Notas__inscrito__66D536B1" FromRole="Notas" ToRole="Inscricao" />
+  </EntityType>
+  <EntityType Name="Oferta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="curso" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="uc" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="semestre" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Curso1" Relationship="Self.FK__Oferta__curso__4C214075" FromRole="Oferta" ToRole="Curso" />
+    <NavigationProperty Name="Inscricaos" Relationship="Self.FK__Inscricao__ofert__63F8CA06" FromRole="Oferta" ToRole="Inscricao" />
+    <NavigationProperty Name="UC1" Relationship="Self.FK__Oferta__uc__4D1564AE" FromRole="Oferta" ToRole="UC" />
+  </EntityType>
+  <EntityType Name="Pessoa">
+    <Key>
+      <PropertyRef Name="nCont" />
+    </Key>
+    <Property Name="escola" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="nCont" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Alunoes" Relationship="Self.FK__Aluno__nCont__2BB470E3" FromRole="Pessoa" ToRole="Aluno" />
+    <NavigationProperty Name="Escola1" Relationship="Self.FK__Pessoa__escola__27E3DFFF" FromRole="Pessoa" ToRole="Escola" />
+    <NavigationProperty Name="Professors" Relationship="Self.FK__Professor__nCont__2F8501C7" FromRole="Pessoa" ToRole="Professor" />
+  </EntityType>
+  <EntityType Name="Professor">
+    <Key>
+      <PropertyRef Name="nDocente" />
+    </Key>
+    <Property Name="nDocente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nCont" Type="Int32" />
+    <Property Name="area" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="categoria" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Pessoa" Relationship="Self.FK__Professor__nCont__2F8501C7" FromRole="Professor" ToRole="Pessoa" />
+    <NavigationProperty Name="Registo_Prof_Ano" Relationship="Self.FK__Registo_Pr__prof__381A47C8" FromRole="Professor" ToRole="Registo_Prof_Ano" />
+    <NavigationProperty Name="Registo_Regente_Ano" Relationship="Self.FK__Registo_Re__prof__3CDEFCE5" FromRole="Professor" ToRole="Registo_Regente_Ano" />
+    <NavigationProperty Name="Seccaos" Relationship="Self.Coord_Seccao" FromRole="Professor" ToRole="Seccao" />
+    <NavigationProperty Name="Seccaos1" Relationship="Self.Prof_Seccao" FromRole="Professor" ToRole="Seccao" />
+  </EntityType>
+  <EntityType Name="Registo_Prof_Ano">
+    <Key>
+      <PropertyRef Name="prof" />
+      <PropertyRef Name="uc" />
+      <PropertyRef Name="ano" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prof" Type="Int32" Nullable="false" />
+    <Property Name="uc" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ano" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Professor" Relationship="Self.FK__Registo_Pr__prof__381A47C8" FromRole="Registo_Prof_Ano" ToRole="Professor" />
+    <NavigationProperty Name="UC1" Relationship="Self.FK__Registo_Prof__uc__390E6C01" FromRole="Registo_Prof_Ano" ToRole="UC" />
+  </EntityType>
+  <EntityType Name="Registo_Regente_Ano">
+    <Key>
+      <PropertyRef Name="uc" />
+      <PropertyRef Name="ano" />
+    </Key>
+    <Property Name="prof" Type="Int32" />
+    <Property Name="uc" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ano" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Professor" Relationship="Self.FK__Registo_Re__prof__3CDEFCE5" FromRole="Registo_Regente_Ano" ToRole="Professor" />
+    <NavigationProperty Name="UC1" Relationship="Self.FK__Registo_Rege__uc__3DD3211E" FromRole="Registo_Regente_Ano" ToRole="UC" />
+  </EntityType>
+  <EntityType Name="Seccao">
+    <Key>
+      <PropertyRef Name="sigla" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sigla" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descricao" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="departamento" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Departamento1" Relationship="Self.FK__Seccao__departam__51DA19CB" FromRole="Seccao" ToRole="Departamento" />
+    <NavigationProperty Name="Professors" Relationship="Self.Coord_Seccao" FromRole="Seccao" ToRole="Professor" />
+    <NavigationProperty Name="Professors1" Relationship="Self.Prof_Seccao" FromRole="Seccao" ToRole="Professor" />
+  </EntityType>
+  <EntityType Name="UC">
+    <Key>
+      <PropertyRef Name="sigla" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="escola" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="sigla" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descricao" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="creditos" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Escola1" Relationship="Self.FK__UC__escola__335592AB" FromRole="UC" ToRole="Escola" />
+    <NavigationProperty Name="Ofertas" Relationship="Self.FK__Oferta__uc__4D1564AE" FromRole="UC" ToRole="Oferta" />
+    <NavigationProperty Name="Registo_Prof_Ano" Relationship="Self.FK__Registo_Prof__uc__390E6C01" FromRole="UC" ToRole="Registo_Prof_Ano" />
+    <NavigationProperty Name="Registo_Regente_Ano" Relationship="Self.FK__Registo_Rege__uc__3DD3211E" FromRole="UC" ToRole="Registo_Regente_Ano" />
+  </EntityType>
+  <Association Name="FK__Aluno__nCont__2BB470E3">
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="nCont" />
+      </Principal>
+      <Dependent Role="Aluno">
+        <PropertyRef Name="nCont" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Matricula__aluno__5D4BCC77">
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Matricula" Type="Self.Matricula" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno">
+        <PropertyRef Name="nAluno" />
+      </Principal>
+      <Dependent Role="Matricula">
+        <PropertyRef Name="aluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NotaFinal__aluno__6AA5C795">
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NotaFinal" Type="Self.NotaFinal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno">
+        <PropertyRef Name="nAluno" />
+      </Principal>
+      <Dependent Role="NotaFinal">
+        <PropertyRef Name="aluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Curso_Dep__curso__4850AF91">
+    <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+    <End Role="Curso_Dep" Type="Self.Curso_Dep" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="Curso_Dep">
+        <PropertyRef Name="curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Matricula__curso__5E3FF0B0">
+    <End Role="Curso" Type="Self.Curso" Multiplicity="0..1" />
+    <End Role="Matricula" Type="Self.Matricula" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="Matricula">
+        <PropertyRef Name="curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NotaFinal__curso__6C8E1007">
+    <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+    <End Role="NotaFinal" Type="Self.NotaFinal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="NotaFinal">
+        <PropertyRef Name="curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Oferta__curso__4C214075">
+    <End Role="Curso" Type="Self.Curso" Multiplicity="0..1" />
+    <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="Oferta">
+        <PropertyRef Name="curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Curso_Dep__depar__475C8B58">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Curso_Dep" Type="Self.Curso_Dep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="Curso_Dep">
+        <PropertyRef Name="departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Departame__escol__4297D63B">
+    <End Role="Escola" Type="Self.Escola" Multiplicity="0..1" />
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escola">
+        <PropertyRef Name="nome" />
+      </Principal>
+      <Dependent Role="Departamento">
+        <PropertyRef Name="escola" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Seccao__departam__51DA19CB">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Seccao" Type="Self.Seccao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="Seccao">
+        <PropertyRef Name="departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pessoa__escola__27E3DFFF">
+    <End Role="Escola" Type="Self.Escola" Multiplicity="0..1" />
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escola">
+        <PropertyRef Name="nome" />
+      </Principal>
+      <Dependent Role="Pessoa">
+        <PropertyRef Name="escola" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UC__escola__335592AB">
+    <End Role="Escola" Type="Self.Escola" Multiplicity="0..1" />
+    <End Role="UC" Type="Self.UC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escola">
+        <PropertyRef Name="nome" />
+      </Principal>
+      <Dependent Role="UC">
+        <PropertyRef Name="escola" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inscricao__matri__6304A5CD">
+    <End Role="Matricula" Type="Self.Matricula" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Inscricao" Type="Self.Inscricao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Matricula">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Inscricao">
+        <PropertyRef Name="matricula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inscricao__ofert__63F8CA06">
+    <End Role="Oferta" Type="Self.Oferta" Multiplicity="0..1" />
+    <End Role="Inscricao" Type="Self.Inscricao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oferta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Inscricao">
+        <PropertyRef Name="oferta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notas__inscrito__66D536B1">
+    <End Role="Inscricao" Type="Self.Inscricao" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Notas" Type="Self.Nota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inscricao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="inscrito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Oferta__uc__4D1564AE">
+    <End Role="UC" Type="Self.UC" Multiplicity="0..1" />
+    <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UC">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="Oferta">
+        <PropertyRef Name="uc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Professor__nCont__2F8501C7">
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="0..1" />
+    <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="nCont" />
+      </Principal>
+      <Dependent Role="Professor">
+        <PropertyRef Name="nCont" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registo_Pr__prof__381A47C8">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
+    <End Role="Registo_Prof_Ano" Type="Self.Registo_Prof_Ano" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="nDocente" />
+      </Principal>
+      <Dependent Role="Registo_Prof_Ano">
+        <PropertyRef Name="prof" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registo_Re__prof__3CDEFCE5">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
+    <End Role="Registo_Regente_Ano" Type="Self.Registo_Regente_Ano" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="nDocente" />
+      </Principal>
+      <Dependent Role="Registo_Regente_Ano">
+        <PropertyRef Name="prof" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registo_Prof__uc__390E6C01">
+    <End Role="UC" Type="Self.UC" Multiplicity="1" />
+    <End Role="Registo_Prof_Ano" Type="Self.Registo_Prof_Ano" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UC">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="Registo_Prof_Ano">
+        <PropertyRef Name="uc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registo_Rege__uc__3DD3211E">
+    <End Role="UC" Type="Self.UC" Multiplicity="1" />
+    <End Role="Registo_Regente_Ano" Type="Self.Registo_Regente_Ano" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UC">
+        <PropertyRef Name="sigla" />
+      </Principal>
+      <Dependent Role="Registo_Regente_Ano">
+        <PropertyRef Name="uc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Coord_Seccao">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+    <End Role="Seccao" Type="Self.Seccao" Multiplicity="*" />
+  </Association>
+  <Association Name="Prof_Seccao">
+    <End Role="Seccao" Type="Self.Seccao" Multiplicity="*" />
+    <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="SI2_Fase2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alunoes" EntityType="Self.Aluno" />
+    <EntitySet Name="Cursoes" EntityType="Self.Curso" />
+    <EntitySet Name="Curso_Dep" EntityType="Self.Curso_Dep" />
+    <EntitySet Name="Departamentoes" EntityType="Self.Departamento" />
+    <EntitySet Name="Escolas" EntityType="Self.Escola" />
+    <EntitySet Name="Inscricaos" EntityType="Self.Inscricao" />
+    <EntitySet Name="Matriculas" EntityType="Self.Matricula" />
+    <EntitySet Name="NotaFinals" EntityType="Self.NotaFinal" />
+    <EntitySet Name="Notas" EntityType="Self.Nota" />
+    <EntitySet Name="Ofertas" EntityType="Self.Oferta" />
+    <EntitySet Name="Pessoas" EntityType="Self.Pessoa" />
+    <EntitySet Name="Professors" EntityType="Self.Professor" />
+    <EntitySet Name="Registo_Prof_Ano" EntityType="Self.Registo_Prof_Ano" />
+    <EntitySet Name="Registo_Regente_Ano" EntityType="Self.Registo_Regente_Ano" />
+    <EntitySet Name="Seccaos" EntityType="Self.Seccao" />
+    <EntitySet Name="UCs" EntityType="Self.UC" />
+    <AssociationSet Name="FK__Aluno__nCont__2BB470E3" Association="Self.FK__Aluno__nCont__2BB470E3">
+      <End Role="Pessoa" EntitySet="Pessoas" />
+      <End Role="Aluno" EntitySet="Alunoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Matricula__aluno__5D4BCC77" Association="Self.FK__Matricula__aluno__5D4BCC77">
+      <End Role="Aluno" EntitySet="Alunoes" />
+      <End Role="Matricula" EntitySet="Matriculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NotaFinal__aluno__6AA5C795" Association="Self.FK__NotaFinal__aluno__6AA5C795">
+      <End Role="Aluno" EntitySet="Alunoes" />
+      <End Role="NotaFinal" EntitySet="NotaFinals" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Curso_Dep__curso__4850AF91" Association="Self.FK__Curso_Dep__curso__4850AF91">
+      <End Role="Curso" EntitySet="Cursoes" />
+      <End Role="Curso_Dep" EntitySet="Curso_Dep" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Matricula__curso__5E3FF0B0" Association="Self.FK__Matricula__curso__5E3FF0B0">
+      <End Role="Curso" EntitySet="Cursoes" />
+      <End Role="Matricula" EntitySet="Matriculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NotaFinal__curso__6C8E1007" Association="Self.FK__NotaFinal__curso__6C8E1007">
+      <End Role="Curso" EntitySet="Cursoes" />
+      <End Role="NotaFinal" EntitySet="NotaFinals" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Oferta__curso__4C214075" Association="Self.FK__Oferta__curso__4C214075">
+      <End Role="Curso" EntitySet="Cursoes" />
+      <End Role="Oferta" EntitySet="Ofertas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Curso_Dep__depar__475C8B58" Association="Self.FK__Curso_Dep__depar__475C8B58">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Curso_Dep" EntitySet="Curso_Dep" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Departame__escol__4297D63B" Association="Self.FK__Departame__escol__4297D63B">
+      <End Role="Escola" EntitySet="Escolas" />
+      <End Role="Departamento" EntitySet="Departamentoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Seccao__departam__51DA19CB" Association="Self.FK__Seccao__departam__51DA19CB">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Seccao" EntitySet="Seccaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pessoa__escola__27E3DFFF" Association="Self.FK__Pessoa__escola__27E3DFFF">
+      <End Role="Escola" EntitySet="Escolas" />
+      <End Role="Pessoa" EntitySet="Pessoas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UC__escola__335592AB" Association="Self.FK__UC__escola__335592AB">
+      <End Role="Escola" EntitySet="Escolas" />
+      <End Role="UC" EntitySet="UCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inscricao__matri__6304A5CD" Association="Self.FK__Inscricao__matri__6304A5CD">
+      <End Role="Matricula" EntitySet="Matriculas" />
+      <End Role="Inscricao" EntitySet="Inscricaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inscricao__ofert__63F8CA06" Association="Self.FK__Inscricao__ofert__63F8CA06">
+      <End Role="Oferta" EntitySet="Ofertas" />
+      <End Role="Inscricao" EntitySet="Inscricaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notas__inscrito__66D536B1" Association="Self.FK__Notas__inscrito__66D536B1">
+      <End Role="Inscricao" EntitySet="Inscricaos" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Oferta__uc__4D1564AE" Association="Self.FK__Oferta__uc__4D1564AE">
+      <End Role="UC" EntitySet="UCs" />
+      <End Role="Oferta" EntitySet="Ofertas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Professor__nCont__2F8501C7" Association="Self.FK__Professor__nCont__2F8501C7">
+      <End Role="Pessoa" EntitySet="Pessoas" />
+      <End Role="Professor" EntitySet="Professors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registo_Pr__prof__381A47C8" Association="Self.FK__Registo_Pr__prof__381A47C8">
+      <End Role="Professor" EntitySet="Professors" />
+      <End Role="Registo_Prof_Ano" EntitySet="Registo_Prof_Ano" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registo_Re__prof__3CDEFCE5" Association="Self.FK__Registo_Re__prof__3CDEFCE5">
+      <End Role="Professor" EntitySet="Professors" />
+      <End Role="Registo_Regente_Ano" EntitySet="Registo_Regente_Ano" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registo_Prof__uc__390E6C01" Association="Self.FK__Registo_Prof__uc__390E6C01">
+      <End Role="UC" EntitySet="UCs" />
+      <End Role="Registo_Prof_Ano" EntitySet="Registo_Prof_Ano" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registo_Rege__uc__3DD3211E" Association="Self.FK__Registo_Rege__uc__3DD3211E">
+      <End Role="UC" EntitySet="UCs" />
+      <End Role="Registo_Regente_Ano" EntitySet="Registo_Regente_Ano" />
+    </AssociationSet>
+    <AssociationSet Name="Coord_Seccao" Association="Self.Coord_Seccao">
+      <End Role="Professor" EntitySet="Professors" />
+      <End Role="Seccao" EntitySet="Seccaos" />
+    </AssociationSet>
+    <AssociationSet Name="Prof_Seccao" Association="Self.Prof_Seccao">
+      <End Role="Seccao" EntitySet="Seccaos" />
+      <End Role="Professor" EntitySet="Professors" />
+    </AssociationSet>
+    <FunctionImport Name="sp_Catch_errors" ReturnType="Collection(SI2_Fase2Model.sp_Catch_errors_Result)" />
+    <FunctionImport Name="sp_createCurso">
+      <Parameter Name="dep_sigla" Mode="In" Type="String" />
+      <Parameter Name="cur_sigla" Mode="In" Type="String" />
+      <Parameter Name="descricao" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deleteDepartamento" ReturnType="Collection(SI2_Fase2Model.sp_deleteDepartamento_Result)">
+      <Parameter Name="sigla" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deleteOferta" ReturnType="Collection(SI2_Fase2Model.sp_deleteOferta_Result)">
+      <Parameter Name="curso" Mode="In" Type="String" />
+      <Parameter Name="uc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deleteSeccao" ReturnType="Collection(SI2_Fase2Model.sp_deleteSeccao_Result)">
+      <Parameter Name="sigla" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deleteUC" ReturnType="Collection(SI2_Fase2Model.sp_deleteUC_Result)">
+      <Parameter Name="sigla" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetParams" ReturnType="Collection(SI2_Fase2Model.sp_GetParams_Result)">
+      <Parameter Name="sp" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetSpecifics" ReturnType="Collection(SI2_Fase2Model.sp_GetSpecifics_Result)" />
+    <FunctionImport Name="sp_insertDepartamento" ReturnType="Collection(SI2_Fase2Model.sp_insertDepartamento_Result)">
+      <Parameter Name="sigla" Mode="In" Type="String" />
+      <Parameter Name="descricao" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insertInscricao" ReturnType="Collection(SI2_Fase2Model.sp_insertInscricao_Result)">
+      <Parameter Name="aluno" Mode="In" Type="Int32" />
+      <Parameter Name="uc" Mode="In" Type="String" />
+      <Parameter Name="ano" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insertMatricula" ReturnType="Collection(SI2_Fase2Model.sp_insertMatricula_Result)">
+      <Parameter Name="aluno" Mode="In" Type="Int32" />
+      <Parameter Name="curso" Mode="In" Type="String" />
+      <Parameter Name="ano" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insertNota" ReturnType="Collection(SI2_Fase2Model.sp_insertNota_Result)">
+      <Parameter Name="aluno" Mode="In" Type="Int32" />
+      <Parameter Name="ano" Mode="In" Type="Int32" />
+      <Parameter Name="nota" Mode="In" Type="Double" />
+      <Parameter Name="uc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insertOferta" ReturnType="Collection(SI2_Fase2Model.sp_insertOferta_Result)">
+      <Parameter Name="curso" Mode="In" Type="String" />
+      <Parameter Name="uc" Mode="In" Type="String" />
+      <Parameter Name="semestre" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insertSeccao" ReturnType="Collection(SI2_Fase2Model.sp_insertSeccao_Result)">
+      <Parameter Name="sigla" Mode="In" Type="String" />
+      <Parameter Name="departamento" Mode="In" Type="String" />
+      <Parameter Name="descricao" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insertUC" ReturnType="Collection(SI2_Fase2Model.sp_insertUC_Result)">
+      <Parameter Name="sigla" Mode="In" Type="String" />
+      <Parameter Name="descricao" Mode="In" Type="String" />
+      <Parameter Name="creditos" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_updateDepartamento" ReturnType="Collection(SI2_Fase2Model.sp_updateDepartamento_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="sigla" Mode="In" Type="String" />
+      <Parameter Name="descricao" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_updateSeccao" ReturnType="Collection(SI2_Fase2Model.sp_updateSeccao_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="sigla" Mode="In" Type="String" />
+      <Parameter Name="descricao" Mode="In" Type="String" />
+      <Parameter Name="departamento" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_updateUC" ReturnType="Collection(SI2_Fase2Model.sp_updateUC_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="sigla" Mode="In" Type="String" />
+      <Parameter Name="descricao" Mode="In" Type="String" />
+      <Parameter Name="creditos" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_Catch_errors_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_deleteDepartamento_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_deleteOferta_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_deleteSeccao_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_deleteUC_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_GetParams_Result">
+    <Property Type="String" Name="sp" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Parameter_name" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Type" Nullable="true" MaxLength="128" />
+    <Property Type="Int16" Name="Length" Nullable="false" />
+    <Property Type="Int32" Name="Param_order" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_GetSpecifics_Result">
+    <Property Type="String" Name="sp" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Parameter_name" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Type" Nullable="true" MaxLength="128" />
+    <Property Type="Int16" Name="Length" Nullable="false" />
+    <Property Type="Int32" Name="Param_order" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_insertDepartamento_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_insertInscricao_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_insertMatricula_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_insertNota_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_insertOferta_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_insertSeccao_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_insertUC_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_updateDepartamento_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_updateSeccao_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="sp_updateUC_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+</Schema>
